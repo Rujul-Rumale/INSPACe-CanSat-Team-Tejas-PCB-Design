@@ -44,6 +44,19 @@ Full list of 25 zips is in `history/` with original timestamps preserved by this
 - `D:/Backup/Users/Downloads/01_Documents/` — `Tejas_Components.docx`, `tejas_req.docx`,
   `TEJAS (AUSRC)-Invention Disclosre form.pdf`, `Tejas_PCB.pdf`, `TEJAS_PCB_V2.pdf`
 
+## Gerber V3 vs V4 verdict (2026-10-10)
+
+All 12 files differ **only** in plot-timestamp comments
+(`TF.CreationDate`, `G04 Created by KiCad (PCBNEW 9.0.3) date …`).
+400 DPI raster renders (pygerber, Cu + silk + edge, top flipped-bottom)
+are **pixel-identical** (difference extrema `(0, 0)` both sides).
+V4 (2025-10-09 22:02:46–50) is the final release — matches `pcbnew.last_paths.plot`.
+Comparisons: `docs/renders/gerber-compare/compare-top.png`, `compare-bottom.png`.
+
+Physical attribution: bottom silkscreen etches `TEAM TEJAS`, a QR code, and the
+team block `SHRUTHI / RUJUL / Y. SAGAR / G. SAGAR / THANUSRI / SRINIDHI /
+RAGUVEER / CHIDVILAS` — visible in `v3-bottom.png` / `v4-bottom.png`.
+
 ## Renders
 
 `docs/renders/` (KiCad 10, 2026-10-10): `3d-iso.png`, `3d-top.png`,

@@ -38,9 +38,10 @@ so modules render as footprints — geometry and Gerbers are unaffected.*
 | `hardware/Tejas.kicad_sch` | Schematic, KiCad 9.0, rev 2, dated 3-10-25 in title block |
 | `hardware/Tejas.kicad_pcb` | Board layout (2.48 MB) |
 | `hardware/Tejas.kicad_pro` | KiCad project settings (pristine Oct 2025; KiCad 10 migrates it on open — don't commit that) |
-| `manufacturing/gerber-V4/` | Final Gerber release plotted 2025-10-09 22:02 (12 files, incl. `Tejas-job.gbrjob`) |
+| `manufacturing/gerber-V4/` | Final Gerber release plotted 2025-10-09 22:02 (12 files, incl. `Tejas-job.gbrjob`) — pixel-identical to V3, see verdict below |
 | `manufacturing/gerber-V3/` | Previous Gerber release 2025-10-09 22:01, kept for history |
 | `docs/renders/` | 3D PNGs (top/bottom/iso), 2D front/back SVGs, schematic PDF — all generated from `hardware/` |
+| `docs/renders/gerber-compare/` | V3 vs V4 renders (top/bottom + side-by-side) — verdict: identical |
 | `docs/bom.csv` | Bill of materials exported from schematic (41 lines) |
 | `docs/board-stats.rpt` | Layer/component/drill statistics |
 | `docs/Tejas.pdf` | Board plot / fab drawing export (2025-10-05) |
@@ -53,6 +54,19 @@ so modules render as footprints — geometry and Gerbers are unaffected.*
 Symbols are embedded in the schematic and footprints in the layout, so the board opens
 with stock KiCad 9/10 libraries; `libs/` additionally preserves the original
 `.kicad_sym` / `.kicad_mod` / `.step` sources. Open `hardware/Tejas.kicad_pro` in **KiCad 9.0+**.
+
+## Gerber V3 vs V4 — verdict
+
+**V4 is the final release, and it is functionally identical to V3.**
+Every file differs only in its two plot-timestamp comments (`TF.CreationDate` +
+`G04 Created by KiCad …`); pixel-diff of 400 DPI renders (Cu + silk + edge,
+top and bottom) is exactly zero — see `docs/renders/gerber-compare/compare-top.png`
+and `compare-bottom.png`. V4 was plotted ~90 s after V3 and matches the project's
+configured plot path (`Tejas_Gerber_V4/`), so send V4 to fab.
+
+Bonus authorship evidence visible in the bottom render: the silkscreen carries
+`TEAM TEJAS`, a QR code, and the team block
+`SHRUTHI / RUJUL / Y. SAGAR / G. SAGAR / THANUSRI / SRINIDHI / RAGUVEER / CHIDVILAS`.
 
 ## Authorship & scope
 
