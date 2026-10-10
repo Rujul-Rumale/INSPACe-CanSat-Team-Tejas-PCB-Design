@@ -45,8 +45,10 @@ old workstation, so modules show as footprints here — geometry and Gerbers are
 
 This was a team build. My contributions were the complete PCB — schematic,
 footprints, layout, DRC, and the Gerber release — plus the data-processing
-section of our PFR presentation. My teammates handled flight software, the
-ground-station GUI, MCP server, and telemetry operations.
+section of our PFR presentation. I also led the mechanical structure (3D
+modeled in Autodesk Fusion with a teammate's help, 3D printed in ABS).
+My teammates handled flight software, the ground-station GUI, MCP server,
+and telemetry operations.
 
 ## Revision status
 
