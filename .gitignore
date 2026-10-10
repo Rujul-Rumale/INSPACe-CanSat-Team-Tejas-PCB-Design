@@ -6,5 +6,7 @@ fp-info-cache
 *~
 *.tmp
 *.bak
+*.lck
+.history/
 .DS_Store
 Thumbs.db
