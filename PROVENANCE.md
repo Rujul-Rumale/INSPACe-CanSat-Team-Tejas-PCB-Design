@@ -44,6 +44,21 @@ Full list of 25 zips is in `history/` with original timestamps preserved by this
 - `D:/Backup/Users/Downloads/01_Documents/` — `Tejas_Components.docx`, `tejas_req.docx`,
   `TEJAS (AUSRC)-Invention Disclosre form.pdf`, `Tejas_PCB.pdf`, `TEJAS_PCB_V2.pdf`
 
+## Approved release vs working file (2026-10-10 analysis)
+
+- **Approved for fab:** `manufacturing/gerber-V4/` (2025-10-09 22:02). Matches the
+  Oct 9 22:09 backup board state to 1 line; pixel-identical to V3.
+- **Unapproved draft:** `hardware/Tejas.kicad_pcb` (Oct 11 working state) holds a
+  board-outline rework made after the V4 plot that was never approved:
+  Edge.Cuts redraw (8 mounting-hole circles deleted, stepped/notched outline),
+  6 copper zones refilled as a consequence (~17 k lines, −51 KB).
+  Footprints/tracks/vias/nets/schematic all untouched.
+- Do not fab from `hardware/` without approval. Analysis method: backup-to-backup
+  `.kicad_pcb` source diffs (same KiCad 9 format, zero tool noise) + footprint /
+  track / zone-setting set comparison. (Direct KiCad-10 Gerber re-plots were
+  rejected as evidence — this PC lacks the original `Roboto Mono` font, which
+  alone shifts ~25 k silkscreen strokes.)
+
 ## Gerber V3 vs V4 verdict (2026-10-10)
 
 All 12 files differ **only** in plot-timestamp comments

@@ -37,7 +37,7 @@ so modules render as footprints — geometry and Gerbers are unaffected.*
 |---|---|
 | `hardware/Tejas.kicad_sch` | Schematic, KiCad 9.0, rev 2, dated 3-10-25 in title block |
 | `hardware/Tejas.kicad_pcb` | Board layout (2.48 MB) |
-| `hardware/Tejas.kicad_pro` | KiCad project settings (pristine Oct 2025; KiCad 10 migrates it on open — don't commit that) |
+| `hardware/Tejas.kicad_pro` | KiCad project settings (pristine Oct 2025; KiCad 10 rewrites it on open — cosmetic only, don't commit that) |
 | `manufacturing/gerber-V4/` | Final Gerber release plotted 2025-10-09 22:02 (12 files, incl. `Tejas-job.gbrjob`) — pixel-identical to V3, see verdict below |
 | `manufacturing/gerber-V3/` | Previous Gerber release 2025-10-09 22:01, kept for history |
 | `docs/renders/` | 3D PNGs (top/bottom/iso), 2D front/back SVGs, schematic PDF — all generated from `hardware/` |
@@ -57,12 +57,33 @@ with stock KiCad 9/10 libraries; `libs/` additionally preserves the original
 
 ## Gerber V3 vs V4 — verdict
 
-**V4 is the final release, and it is functionally identical to V3.**
-Every file differs only in its two plot-timestamp comments (`TF.CreationDate` +
+**V4 is the final, approved release — send V4 to fab, not the working board file.**
+Every V3/V4 file differs only in its two plot-timestamp comments (`TF.CreationDate` +
 `G04 Created by KiCad …`); pixel-diff of 400 DPI renders (Cu + silk + edge,
 top and bottom) is exactly zero — see `docs/renders/gerber-compare/compare-top.png`
-and `compare-bottom.png`. V4 was plotted ~90 s after V3 and matches the project's
-configured plot path (`Tejas_Gerber_V4/`), so send V4 to fab.
+and `compare-bottom.png`. V4 was plotted ~90 s after V3, matches the project's
+configured plot path (`Tejas_Gerber_V4/`), and matches the Oct 9 22:09 backup
+board state to a single line.
+
+## Working file vs approved release — the unapproved outline change
+
+`hardware/Tejas.kicad_pcb` (Oct 11 working state) contains a **board-outline rework
+that was never approved**, made after the V4 plot. Source-level diff of the
+Oct 9 22:09 backup vs the working file proves the exact scope:
+
+- **Edge.Cuts redrawn:** 4 straight edges + 4 corner arcs + **8 mounting-hole
+  circles removed** (r≈4.2 mm at the four corners, r≈2 mm mid-sides) →
+  12 segments + 4 small arcs forming a **stepped/notched outline**
+  (left edge steps x 89.8→100.09 near y 45/118; verticals at x 104.29/177.21).
+- **Consequence only:** the 6 copper zones refilled against the new outline
+  (~17 k polygon lines, −51 KB). Zone *settings* identical.
+- **Untouched:** all 34 footprints (positions, rotations), all 351 tracks,
+  all 38 vias, all nets, and the entire schematic (every backup `.kicad_sch`
+  is byte-identical at 498,511 B).
+
+So: `manufacturing/gerber-V4/` = approved flown geometry; `hardware/` = draft
+with the unapproved outline experiment. Do not regenerate fab outputs from
+`hardware/` without design approval.
 
 Bonus authorship evidence visible in the bottom render: the silkscreen carries
 `TEAM TEJAS`, a QR code, and the team block
