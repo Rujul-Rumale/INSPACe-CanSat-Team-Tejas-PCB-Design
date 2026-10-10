@@ -1,118 +1,63 @@
 # Tejas CanSat — Onboard Computer (OBC) PCB
 
-**Author / Designer: Rujul Rumale <rujul.rumale@gmail.com>**
-**Project: INSPACe CanSat — "Tejas"**
-**Role claimed: PCB design (schematic + layout + Gerber release) and PFR PPT data-processing section**
+Carrier board for our INSPACe CanSat ("Tejas") — Teensy 4.1, XBee radio, and a full
+sensor suite (BNO055, BME688, DPS310, INA260, MICS5524) with dual buck regulators,
+servo/ESC headers, and buzzer on a ~102×102 mm 2-layer board.
 
-This repository is the author's clean, attributable record of the **PCB contribution** to the
-INSPACe CanSat team project. It was created on 2026-10-10 from the working project folder
-to establish a verifiable, timestamped record of authorship.
-
-> If you reuse this design you must retain this authorship notice and comply with the
-> license in `LICENSE` (CERN-OHL-S-2.0).
+Designed by me (**Rujul Rumale**) in KiCad, Oct 2025 — schematic, layout, and Gerber
+release. I also put together the data-processing section of our PFR deck.
 
 ![3D isometric render](docs/renders/3d-iso.png)
-
-*Tejas OBC, ~102×102 mm: Teensy 4.1 + XBee + BNO055/BME688/DPS310/INA260/MICS5524 sensor suite,
-dual buck regulators, servo/ESC headers, buzzer — "TEAM TEJAS" silkscreen.*
 
 | Top | Bottom |
 |---|---|
 | ![3D top](docs/renders/3d-top.png) | ![3D bottom](docs/renders/3d-bottom.png) |
 
-*Renders by KiCad 10 `pcb render` (high quality). Custom SnapEDA 3D bodies are absent
-(their `.step` files use absolute `C:/Open Source/…` paths from the design workstation),
-so modules render as footprints — geometry and Gerbers are unaffected.*
+*Renders: KiCad raytracer. The custom module 3D bodies use absolute paths from my
+old workstation, so modules show as footprints here — geometry and Gerbers are unaffected.*
 
 ## Board at a glance
 
 - **Size:** 101.9 × 101.9 mm, 1.6 mm stackup, 2-layer (`docs/board-stats.rpt`)
-- **Parts:** 41 BOM lines (`docs/bom.csv`): Teensy 4.1, XBee, BNO055, BME280/BME688,
-  MICS5524, DPS310, INA260, 2× buck (MINI560/MP1584), XT30, S8421-45R, servo/ESC headers
+- **Parts:** 41 BOM lines (`docs/bom.csv`) — Teensy 4.1, XBee, BNO055, BME280/BME688,
+  MICS5524, DPS310, INA260, 2× buck (MINI560/MP1584), XT30, coin-cell retainer,
+  servo/ESC headers
 - **Copper:** 0.3 mm min track, 0.2 mm clearance, 38 vias, 199 pads
+- **Fun detail:** the bottom silkscreen carries `TEAM TEJAS`, a QR code, and our
+  team names — see `docs/renders/gerber-compare/v4-bottom.png`
 
-## Contents
+## What's in here
 
 | Path | What it is |
 |---|---|
-| `hardware/Tejas.kicad_sch` | Schematic, KiCad 9.0, rev 2, dated 3-10-25 in title block |
-| `hardware/Tejas.kicad_pcb` | Board layout (2.48 MB) |
-| `hardware/Tejas.kicad_pro` | KiCad project settings (pristine Oct 2025; KiCad 10 rewrites it on open — cosmetic only, don't commit that) |
-| `manufacturing/gerber-V4/` | Final Gerber release plotted 2025-10-09 22:02 (12 files, incl. `Tejas-job.gbrjob`) — pixel-identical to V3, see verdict below |
-| `manufacturing/gerber-V3/` | Previous Gerber release 2025-10-09 22:01, kept for history |
-| `docs/renders/` | 3D PNGs (top/bottom/iso), 2D front/back SVGs, schematic PDF — all generated from `hardware/` |
-| `docs/renders/gerber-compare/` | V3 vs V4 renders (top/bottom + side-by-side) — verdict: identical |
-| `docs/bom.csv` | Bill of materials exported from schematic (41 lines) |
-| `docs/board-stats.rpt` | Layer/component/drill statistics |
-| `docs/Tejas.pdf` | Board plot / fab drawing export (2025-10-05) |
-| `docs/Tejas_Sch.pdf` | Schematic PDF export (2026-02-14) |
-| `libs/` | Original symbol/footprint/3D libraries Tejas uses (`2472/`, `2652/`, Teensy, XBee, …) — see `libs/README.md` |
-| `history/` | 25 KiCad auto-backup zips `Tejas-2025-10-04_232753.zip` → `Tejas-2025-10-18_032732.zip` + earliest standalone schematic `early-Tejas-2025-10-03.kicad_sch` — day-by-day design evolution, strongest proof of iterative authorship |
-| `PROVENANCE.md` | SHA-256 hashes, timeline, and authorship statement |
-| `AUTHORS` | Contribution record |
+| `hardware/` | KiCad project — schematic (rev 2), layout, project settings. Opens in KiCad 9.0+ |
+| `manufacturing/gerber-V4/` | The Gerber release we sent to fab (12 files, Oct 9) |
+| `manufacturing/gerber-V3/` | Same design, plotted ~90 s earlier — kept for reference |
+| `docs/renders/` | 3D PNGs, 2D front/back SVGs, schematic PDF, V3-vs-V4 Gerber comparisons |
+| `docs/bom.csv` | Bill of materials, exported from the schematic |
+| `docs/board-stats.rpt` | Layer / component / drill statistics |
+| `docs/Tejas.pdf`, `docs/Tejas_Sch.pdf` | Board and schematic exports from the project |
+| `libs/` | The symbol/footprint/3D libraries this board uses — see `libs/README.md` |
+| `history/` | 25 KiCad auto-backup snapshots (Oct 4–18) plus the earliest Oct 3 schematic draft |
+| `DESIGN_NOTES.md` | How the design evolved, and revision status |
 
-Symbols are embedded in the schematic and footprints in the layout, so the board opens
-with stock KiCad 9/10 libraries; `libs/` additionally preserves the original
-`.kicad_sym` / `.kicad_mod` / `.step` sources. Open `hardware/Tejas.kicad_pro` in **KiCad 9.0+**.
+## My work on this project
 
-## Gerber V3 vs V4 — verdict
+Team effort overall — I did the **full PCB** (schematic capture, footprint work,
+layout/routing, DRC, Gerber release) and the **data-processing part of our PFR
+presentation**. Flight software, GUI, MCP server, and telemetry ops were my
+teammates' work.
 
-**V4 is the final, approved release — send V4 to fab, not the working board file.**
-Every V3/V4 file differs only in its two plot-timestamp comments (`TF.CreationDate` +
-`G04 Created by KiCad …`); pixel-diff of 400 DPI renders (Cu + silk + edge,
-top and bottom) is exactly zero — see `docs/renders/gerber-compare/compare-top.png`
-and `compare-bottom.png`. V4 was plotted ~90 s after V3, matches the project's
-configured plot path (`Tejas_Gerber_V4/`), and matches the Oct 9 22:09 backup
-board state to a single line.
+## Revision status
 
-## Working file vs approved release — the unapproved outline change
+`manufacturing/gerber-V4/` is the release we flew. The working board file in
+`hardware/` has a later board-outline experiment (stepped/notched edge, mounting
+holes removed) that we decided not to go with — details in `DESIGN_NOTES.md`.
+So if you want to build this, use the V4 Gerbers.
 
-`hardware/Tejas.kicad_pcb` (Oct 11 working state) contains a **board-outline rework
-that was never approved**, made after the V4 plot. Source-level diff of the
-Oct 9 22:09 backup vs the working file proves the exact scope:
+## Reuse
 
-- **Edge.Cuts redrawn:** 4 straight edges + 4 corner arcs + **8 mounting-hole
-  circles removed** (r≈4.2 mm at the four corners, r≈2 mm mid-sides) →
-  12 segments + 4 small arcs forming a **stepped/notched outline**
-  (left edge steps x 89.8→100.09 near y 45/118; verticals at x 104.29/177.21).
-- **Consequence only:** the 6 copper zones refilled against the new outline
-  (~17 k polygon lines, −51 KB). Zone *settings* identical.
-- **Untouched:** all 34 footprints (positions, rotations), all 351 tracks,
-  all 38 vias, all nets, and the entire schematic (every backup `.kicad_sch`
-  is byte-identical at 498,511 B).
-
-So: `manufacturing/gerber-V4/` = approved flown geometry; `hardware/` = draft
-with the unapproved outline experiment. Do not regenerate fab outputs from
-`hardware/` without design approval.
-
-Bonus authorship evidence visible in the bottom render: the silkscreen carries
-`TEAM TEJAS`, a QR code, and the team block
-`SHRUTHI / RUJUL / Y. SAGAR / G. SAGAR / THANUSRI / SRINIDHI / RAGUVEER / CHIDVILAS`.
-
-## Authorship & scope
-
-- **Mine:** full PCB (schematic capture, footprint assignment, layout/routing, DRC,
-  Gerber generation V3/V4) plus the **PFR PPT data-processing slides/analysis**
-  (slides live in the team deck `PFR_2024-ASI-CANSAT-046.pptx`, not duplicated here
-  to keep this repo hardware-clean).
-- **Not mine / not claimed:** flight software, GUI, MCP server, telemetry logs,
-  team photos/videos. Those remain with their respective authors and are
-  intentionally excluded from this repo.
-
-## Verify
-
-```bash
-git log --format=fuller
-sha256sum hardware/* docs/*.pdf   # compare with PROVENANCE.md
-```
-
-KiCad backups in `history/` carry filesystem timestamps from 2025-10-03 to 2025-10-18
-predating this commit; Gerber plot paths (`C:/Users/rujul/Downloads/Tejas_Gerber_V4/`)
-also match the author's workstation.
-
-## License
-
-Hardware: **CERN Open Hardware Licence Version 2 – Strongly Reciprocal (CERN-OHL-S-2.0)**.
-See `LICENSE`. Documentation (this README, PROVENANCE) © 2025 Rujul Rumale, CC-BY-4.0.
+Hardware is shared under the **CERN Open Hardware Licence v2 (Strongly
+Reciprocal)** — see `LICENSE`. Docs/images are CC-BY-4.0.
 
 SPDX: `SPDX-License-Identifier: CERN-OHL-S-2.0`

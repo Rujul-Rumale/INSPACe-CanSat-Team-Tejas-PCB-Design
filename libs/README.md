@@ -26,7 +26,7 @@ not used by Tejas, kept for reference): `GY-521/`, `HC-12/`,
 
 - Symbols are also **embedded** in `hardware/Tejas.kicad_sch` and footprints in
   `hardware/Tejas.kicad_pcb`, so the board opens with stock KiCad 9/10 alone.
-  These sources exist so footprints/symbols stay editable and attributable.
+  These sources are kept so footprints/symbols stay editable.
 - The `.step` 3D paths in the `.kicad_pcb` are absolute (`C:/Open Source/…`);
   copy this `libs/` tree to that location (or remap `KICAD_USER_DIR`) to restore
   full 3D bodies in the editor.
