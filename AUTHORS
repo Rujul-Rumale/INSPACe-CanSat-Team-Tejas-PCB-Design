@@ -1,0 +1,7 @@
+Rujul Rumale <rujul.rumale@gmail.com>
+  Role: PCB designer — schematic, layout, DRC, Gerber V3/V4 release (Oct 2025),
+        plus PFR PPT data-processing section.
+  Claim: Sole author of the files under hardware/, manufacturing/, docs/ in this repo.
+
+Other INSPACe CanSat subsystems (flight software, GUI, MCP, telemetry ops,
+mechanical photos) belong to their respective teammates and are out of scope here.

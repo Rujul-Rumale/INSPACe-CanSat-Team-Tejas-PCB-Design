@@ -1,0 +1,8 @@
+# Make KiCad schematic/PCB diffs readable on GitHub
+*.kicad_sch diff=kicad-sch
+*.kicad_pcb diff=kicad-pcb
+*.kicad_pro diff=json
+*.gbr diff
+*.gbrjob diff=json
+*.zip binary
+*.pdf binary
