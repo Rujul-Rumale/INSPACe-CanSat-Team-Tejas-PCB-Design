@@ -43,10 +43,10 @@ old workstation, so modules show as footprints here — geometry and Gerbers are
 
 ## My work on this project
 
-Team effort overall — I did the **full PCB** (schematic capture, footprint work,
-layout/routing, DRC, Gerber release) and the **data-processing part of our PFR
-presentation**. Flight software, GUI, MCP server, and telemetry ops were my
-teammates' work.
+This was a team build. My contributions were the complete PCB — schematic,
+footprints, layout, DRC, and the Gerber release — plus the data-processing
+section of our PFR presentation. My teammates handled flight software, the
+ground-station GUI, MCP server, and telemetry operations.
 
 ## Revision status
 
@@ -54,6 +54,13 @@ teammates' work.
 `hardware/` has a later board-outline experiment (stepped/notched edge, mounting
 holes removed) that we decided not to go with — details in `DESIGN_NOTES.md`.
 So if you want to build this, use the V4 Gerbers.
+
+## Known issue → next rev
+
+- **XBee mounting holes too small.** They're currently drawn at 0.5 mm drill
+  (`libs/XB24CDMPIT-001/DIP-20.kicad_mod`) with no clearance tolerance, so the
+  module/header wouldn't seat. Next revision needs these holes enlarged.
+  Everything else on the fabbed board checked out.
 
 ## Reuse
 
