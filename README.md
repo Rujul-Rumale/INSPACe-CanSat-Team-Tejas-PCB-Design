@@ -16,6 +16,20 @@ release. I also put together the data-processing section of our PFR deck.
 *Renders: KiCad raytracer. The custom module 3D bodies use absolute paths from my
 old workstation, so modules show as footprints here — geometry and Gerbers are unaffected.*
 
+## Photos — fabbed and assembled
+
+The real thing: blue soldermask, fully populated and wired.
+
+![Assembled board, populated and wired](docs/photos/assembled-populated.jpeg)
+
+| Bare fab — top | Bare fab — bottom |
+|---|---|
+| ![Bare fab top](docs/photos/fab-top-bare.jpg) | ![Bare fab bottom](docs/photos/fab-bottom-bare.jpg) |
+
+| 3D preview with modules — top | 3D preview with modules — bottom |
+|---|---|
+| ![3D top with modules](docs/photos/render-top-with-modules.jpeg) | ![3D bottom with modules](docs/photos/render-bottom-with-modules.png) |
+
 ## Board at a glance
 
 - **Size:** 101.9 × 101.9 mm, 1.6 mm stackup, 2-layer (`docs/board-stats.rpt`)
@@ -34,6 +48,7 @@ old workstation, so modules show as footprints here — geometry and Gerbers are
 | `manufacturing/gerber-V4/` | The Gerber release we sent to fab (12 files, Oct 9) |
 | `manufacturing/gerber-V3/` | Same design, plotted ~90 s earlier — kept for reference |
 | `docs/renders/` | 3D PNGs, 2D front/back SVGs, schematic PDF, V3-vs-V4 Gerber comparisons |
+| `docs/photos/` | Fab + assembly photos and module-fitted 3D previews |
 | `docs/bom.csv` | Bill of materials, exported from the schematic |
 | `docs/board-stats.rpt` | Layer / component / drill statistics |
 | `docs/Tejas.pdf`, `docs/Tejas_Sch.pdf` | Board and schematic exports from the project |
