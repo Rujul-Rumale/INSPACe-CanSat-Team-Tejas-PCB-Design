@@ -85,3 +85,7 @@ Hardware is shared under the **CERN Open Hardware Licence v2 (Strongly
 Reciprocal)** — see `LICENSE`. Docs/images are CC-BY-4.0.
 
 SPDX: `SPDX-License-Identifier: CERN-OHL-S-2.0`
+
+---
+
+![Views](https://komarev.com/ghpvc/?username=Rujul-Rumale&repo=INSPACe-CanSat-Team-Tejas-PCB-Design&label=Views&color=0e75b6)
